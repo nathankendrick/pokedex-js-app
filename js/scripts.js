@@ -66,8 +66,6 @@ var pokemonList = [
 
 function displayPokemonData(data) {
     document.write('<p>' + data.pokemonName + ' is ' + data.pokemonTypes + ' type, and is ' + data.pokemonHeight + ' meters in height. ' + '</p>');
+    if (data.pokemonHeight < 0.5) document.write('(Wow, ' + data.pokemonName + ' is really small!)');
 }
 pokemonList.forEach(displayPokemonData);
-
-var pokemonHeight = [i];
-if (pokemonHeight < 0.5) document.write('(Wow, ' + pokemonList[i].pokemonName + ' is really small!)');
