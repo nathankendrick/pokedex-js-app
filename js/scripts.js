@@ -64,8 +64,10 @@ var pokemonList = [
 }
 ]
 
-for (var i = 0; i < pokemonList.length; i++) {
-    document.write( '<p>', (pokemonList[i].pokemonName), ' is ', (pokemonList[i].pokemonTypes), ' type ', ' and is ' , (pokemonList[i].pokemonHeight), ' meters in height. ', '</p>');
+function displayPokemonData(data) {
+    document.write('<p>' + data.pokemonName + ' is ' + data.pokemonTypes + ' type, and is ' + data.pokemonHeight + ' meters in height. ' + '</p>');
+}
+pokemonList.forEach(displayPokemonData);
+
 var pokemonHeight = [i];
 if (pokemonHeight < 0.5) document.write('(Wow, ' + pokemonList[i].pokemonName + ' is really small!)');
-}
