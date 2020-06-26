@@ -1,67 +1,67 @@
 var pokemonRepository = (function () {
     var pokemonList = [
         {
-            pokemonName: 'Eevee',
-            pokedexNumber: 133,
-            pokemonHeight: 0.3,
-            pokemonWeight: 6.5,
-            pokemonTypes: ['Normal'],
+            name: 'Eevee',
+            number: 133,
+            height: 0.3,
+            weight: 6.5,
+            types: ['Normal'],
         },
         {
-            pokemonName: 'Vaporeon',
-            pokedexNumber: 134,
-            pokemonHeight: 1.0,
-            pokemonWeight: 29,
-            pokemonTypes: ['Water']
+            name: 'Vaporeon',
+            number: 134,
+            height: 1.0,
+            weight: 29,
+            types: ['Water']
         },
         {
-            pokemonName: 'Jolteon',
-            pokedexNumber: 135,
-            pokemonHeight: 0.8,
-            pokemonWeight: 24.5,
-            pokemonTypes: ['Electric'],
+            name: 'Jolteon',
+            number: 135,
+            height: 0.8,
+            weight: 24.5,
+            types: ['Electric'],
         },
         {
-            pokemonName: 'Flareon',
-            pokedexNumber: 136,
-            pokemonHeight: 0.9,
-            pokemonWeight: 25,
-            pokemonTypes: ['Fire'],
+            name: 'Flareon',
+            number: 136,
+            height: 0.9,
+            weight: 25,
+            types: ['Fire'],
         },
         { 
-            pokemonName: 'Espeon',
-            pokedexNumber: 196,
-            pokemonHeight: 0.9,
-            pokemonWeight: 26.5,
-            pokemonTypes: ['Psychic'],
+            name: 'Espeon',
+            number: 196,
+            height: 0.9,
+            weight: 26.5,
+            types: ['Psychic'],
         },
         {
-            pokemonName: 'Umbreon',
-            pokedexNumber: 197,
-            pokemonHeight: 1.0,
-            pokemonWeight: 27,
-            pokemonTypes: ['Dark'],
+            name: 'Umbreon',
+            number: 197,
+            height: 1.0,
+            weight: 27,
+            types: ['Dark'],
         },
         {
-            pokemonName: 'Leafeon',
-            pokedexNumber: 470,
-            pokemonHeight: 1.0,
-            pokemonWeight: 25.5,
-            pokemonTypes: ['Grass'],
+            name: 'Leafeon',
+            number: 470,
+            height: 1.0,
+            weight: 25.5,
+            types: ['Grass'],
         },
         {
-            pokemonName: 'Glaceon',
-            pokedexNumber: 471,
-            pokemonHeight: 0.8,
-            pokemonWeight: 25.9,
-            pokemonTypes: ['Ice'],
+            name: 'Glaceon',
+            number: 471,
+            height: 0.8,
+            weight: 25.9,
+            types: ['Ice'],
         },
         {
-            pokemonName: 'Sylveon',
-            pokedexNumber: 700,
-            pokemonHeight: 1.0,
-            pokemonWeight: 23.5,
-            pokemonTypes: ['Fairy'],
+            name: 'Sylveon',
+            number: 700,
+            height: 1.0,
+            weight: 23.5,
+            types: ['Fairy'],
         }
     ];
   
@@ -80,7 +80,7 @@ var pokemonRepository = (function () {
   })();
 
 function displayPokemonData(data) {
-    document.write('<p>' + data.pokemonName + ' is ' + data.pokemonTypes + ' type, and is ' + data.pokemonHeight + ' meters in height. ' + '</p>');
-    if (data.pokemonHeight < 0.5) document.write('(Wow, ' + data.pokemonName + ' is really small!)');
+    document.write('<p>' + data.name + ' is ' + data.types + ' type, and is ' + data.height + ' meters in height. ' + '</p>');
+    if (data.height < 0.5) document.write('(Wow, ' + data.name + ' is really small!)');
 }
 pokemonRepository.getAll().forEach(displayPokemonData);
