@@ -66,21 +66,44 @@ var pokemonRepository = (function () {
     ];
   
     function add(pokemon) {
-      pokemonList.push(pokemon);
+        pokemonList.push(pokemon);
     }
   
     function getAll() {
-      return pokemonList;
+        return pokemonList;
     }
-    
+
+    function addListItem(pokemon) {
+        var createList = document.querySelector('.pokedex');
+        var listItem = document.createElement('li');
+        var button = document.createElement('button');
+        button.innerText = (pokemon.name);
+        button.classList.add('list-button');
+        listItem.appendChild(button);
+        createList.appendChild(listItem);
+        button.addEventListener('click', showDetails);
+    }
+
+    function showDetails(pokemon) {
+        console.log(pokemon);
+    }
+
     return {
       add: add,
-      getAll: getAll
+      getAll: getAll,
+      addListItem: addListItem
     };
   })();
 
 function displayPokemonData(data) {
-    document.write('<p>' + data.name + ' is ' + data.types + ' type, and is ' + data.height + ' meters in height. ' + '</p>');
-    if (data.height < 0.5) document.write('(Wow, ' + data.name + ' is really small!)');
+    var createList = document.querySelector('.pokedex');
+    var listItem = document.createElement('li');
+    var button = document.createElement('button');
+    button.innerText = (data.name);
+    button.classList.add('list-button')
+    listItem.appendChild(button);
+    createList.appendChild(listItem);
 }
-pokemonRepository.getAll().forEach(displayPokemonData);
+// pokemonRepository.getAll().forEach(displayPokemonData);
+
+pokemonRepository.getAll().forEach(pokemonRepository.addListItem);
