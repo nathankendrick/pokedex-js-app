@@ -1,69 +1,8 @@
 var pokemonRepository = (function () {
-    var pokemonList = [
-        {
-            name: 'Eevee',
-            number: 133,
-            height: 0.3,
-            weight: 6.5,
-            types: ['Normal'],
-        },
-        {
-            name: 'Vaporeon',
-            number: 134,
-            height: 1.0,
-            weight: 29,
-            types: ['Water']
-        },
-        {
-            name: 'Jolteon',
-            number: 135,
-            height: 0.8,
-            weight: 24.5,
-            types: ['Electric'],
-        },
-        {
-            name: 'Flareon',
-            number: 136,
-            height: 0.9,
-            weight: 25,
-            types: ['Fire'],
-        },
-        { 
-            name: 'Espeon',
-            number: 196,
-            height: 0.9,
-            weight: 26.5,
-            types: ['Psychic'],
-        },
-        {
-            name: 'Umbreon',
-            number: 197,
-            height: 1.0,
-            weight: 27,
-            types: ['Dark'],
-        },
-        {
-            name: 'Leafeon',
-            number: 470,
-            height: 1.0,
-            weight: 25.5,
-            types: ['Grass'],
-        },
-        {
-            name: 'Glaceon',
-            number: 471,
-            height: 0.8,
-            weight: 25.9,
-            types: ['Ice'],
-        },
-        {
-            name: 'Sylveon',
-            number: 700,
-            height: 1.0,
-            weight: 23.5,
-            types: ['Fairy'],
-        }
-    ];
+
+    var pokemonList = [];
+
+    var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151';
   
     function add(pokemon) {
         pokemonList.push(pokemon);
@@ -86,15 +25,54 @@ var pokemonRepository = (function () {
         });
     }
 
-    function showDetails(pokemon) {
-        console.log(pokemon);
+    function showDetails(item) {
+        loadDetails(item).then(function () {
+            console.log(item);    
+        });
+    }
+
+    function loadList() {
+            return fetch(apiUrl).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            json.results.forEach(function (item) {
+                var pokemon = {
+                    name: item.name,
+                    detailsUrl: item.url
+            };
+            add(pokemon);
+          });
+        }).catch(function (e) {
+            console.error(e);
+        })
+    }
+
+    function loadDetails(item) {
+        var url = item.detailsUrl;
+        return fetch(apiUrl).then(function (response) {
+            return response.json();
+        }).then(function (details) {
+            item.imageUrl = details.sprites.front_default;
+            item.species = details.species;
+            item.height = details.height;
+            item.types = details.types;
+        }).catch(function (e) {
+            console.error(e);
+        });
     }
 
     return {
-      add: add,
-      getAll: getAll,
-      addListItem: addListItem
+        add: add,
+        getAll: getAll,
+        addListItem: addListItem,
+        loadList: loadList
     };
-  })();
+})();
+
+pokemonRepository.loadList().then(function() {
+    pokemonRepository.getAll().forEach(function(pokemon){
+        pokemonRepository.addListItem(pokemon);
+    });
+});
 
 pokemonRepository.getAll().forEach(pokemonRepository.addListItem);
