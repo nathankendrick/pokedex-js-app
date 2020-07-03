@@ -95,15 +95,4 @@ var pokemonRepository = (function () {
     };
   })();
 
-function displayPokemonData(data) {
-    var createList = document.querySelector('.pokedex');
-    var listItem = document.createElement('li');
-    var button = document.createElement('button');
-    button.innerText = (data.name);
-    button.classList.add('list-button')
-    listItem.appendChild(button);
-    createList.appendChild(listItem);
-}
-// pokemonRepository.getAll().forEach(displayPokemonData);
-
 pokemonRepository.getAll().forEach(pokemonRepository.addListItem);
