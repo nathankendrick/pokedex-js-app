@@ -107,6 +107,10 @@ Secondary Color (Fuchsia/Salmon): #B73B64
     background-color: gray;
     transition: 200ms;
   }
+
+  .list-button:first-letter {
+    text-transform: uppercase;
+  }
   
   @media screen and (max-width: 700px) {
     .app-container {
