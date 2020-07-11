@@ -1,5 +1,7 @@
 var pokemonRepository = (function () {
 
+    var modalContainer = document.querySelector('#modal-container');
+
     var pokemonList = [];
 
     var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151';
@@ -24,10 +26,10 @@ var pokemonRepository = (function () {
             showDetails(pokemon);
         });
     }
-
+//Modal will be called up instead of console.log here
     function showDetails(item) {
         loadDetails(item).then(function () {
-            console.log(item);    
+            showModal();
         });
     }
 
@@ -60,6 +62,53 @@ var pokemonRepository = (function () {
             console.error(e);
         });
     }
+
+    //Modal below, this is just the example solution as a last resort effort to make anything happen here before trying to make it show info from the API.
+    function showModal(title, text) {
+        modalContainer.innerHTML = '';
+        
+        var modal = document.createElement('div');
+        modal.classList.add('modal');
+        
+        var closeButtonElement = document.createElement('button');
+        closeButtonElement.classList.add('modal-close');
+        closeButtonElement.innerText = 'Close';
+        closeButtonElement.addEventListener('click', hideModal);
+        
+        var titleElement = document.createElement('h1');
+        titleElement.innerText = title;
+        
+        var contentElement = document.createElement('p');
+        contentElement.innerText = text;
+        
+        modal.appendChild(closeButtonElement);
+        modal.appendChild(titleElement);
+        modal.appendChild(contentElement);
+        modalContainer.appendChild(modal);
+        
+        modalContainer.classList.add('is-visible');
+      }
+      
+      function hideModal() {
+        modalContainer.classList.remove('is-visible');
+      }
+      
+      document.querySelector('#show-modal').addEventListener('click', () => {
+        showModal('Modal title', 'This is the modal content!');
+      });
+      
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+          hideModal();  
+        }
+      });
+      
+      modalContainer.addEventListener('click', (e) => {
+        var target = e.target;
+        if (target === modalContainer) {
+          hideModal();
+        }
+      });
 
     return {
         add: add,
