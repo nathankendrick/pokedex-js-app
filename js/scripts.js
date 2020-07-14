@@ -29,7 +29,7 @@ var pokemonRepository = (function () {
 //Modal will be called up instead of console.log here
     function showDetails(item) {
         loadDetails(item).then(function () {
-            showModal();
+            showModal(item);
         });
     }
 
@@ -58,13 +58,13 @@ var pokemonRepository = (function () {
             item.species = details.species;
             item.height = details.height;
             item.types = details.types;
+            item.stats = details.base_stat;
         }).catch(function (e) {
             console.error(e);
         });
     }
 
-    //Modal below, this is just the example solution as a last resort effort to make anything happen here before trying to make it show info from the API.
-    function showModal(title, text) {
+    function showModal(item) {
         modalContainer.innerHTML = '';
         
         var modal = document.createElement('div');
@@ -76,13 +76,26 @@ var pokemonRepository = (function () {
         closeButtonElement.addEventListener('click', hideModal);
         
         var titleElement = document.createElement('h1');
-        titleElement.innerText = title;
+        titleElement.innerText = item.name;
+
+        var imageElement = document.createElement('img');
+        imageElement.classList.add('pokemon-sprite')
+        imageElement.setAttribute('src', item.imageUrl);
+
+        // var speciesElement = document.createElement('h3');
+        // speciesElement.innerText = item.species;
+
+        // var typeElement = document.createElement('h2');
+        // typeElement.innerText = item.types;
         
         var contentElement = document.createElement('p');
-        contentElement.innerText = text;
+        contentElement.innerText = item.height + (' decimetres tall');
         
         modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);
+        modal.appendChild(imageElement);
+        // modal.appendChild(speciesElement);
+        // modal.appendChild(typeElement);
         modal.appendChild(contentElement);
         modalContainer.appendChild(modal);
         
@@ -92,10 +105,6 @@ var pokemonRepository = (function () {
       function hideModal() {
         modalContainer.classList.remove('is-visible');
       }
-      
-      document.querySelector('#show-modal').addEventListener('click', () => {
-        showModal('Modal title', 'This is the modal content!');
-      });
       
       window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {

@@ -111,8 +111,6 @@ Secondary Color (Fuchsia/Salmon): #B73B64
   .list-button:first-letter {
     text-transform: uppercase;
   }
-  
-/* Modal below, straight from the example solution this time to make sure it all matched up */
 
 #modal-container {
   display: none;
@@ -127,14 +125,8 @@ Secondary Color (Fuchsia/Salmon): #B73B64
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  
-  /* to show it above other content */
   z-index: 999; 
-  
-  /* to allow scrolling if the screen is not high enough*/
   overflow: auto; 
-  
-  /* this is used to center the modal */
   display: grid;
   text-align: center;
 }
@@ -145,9 +137,14 @@ Secondary Color (Fuchsia/Salmon): #B73B64
   box-sizing: border-box;
   background: #fff;
   padding: 15px;
+  border-radius: 15px;
   width: 100%;
-  max-width: 700px;
-  text-align: left;
+  max-width: 400px;
+  text-align: center;
+}
+
+.modal:first-letter {
+  text-transform: uppercase;
 }
 
 .modal-close {
@@ -165,6 +162,10 @@ Secondary Color (Fuchsia/Salmon): #B73B64
 
 .modal p {
   margin-bottom: 0;
+}
+
+.pokemon-sprite {
+  width: 220px;
 }
 
   @media screen and (max-width: 700px) {
