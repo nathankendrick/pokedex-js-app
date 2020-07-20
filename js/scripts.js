@@ -56,7 +56,7 @@ var pokemonRepository = (function () {
         }).then(function (details) {
             item.imageUrl = details.sprites.front_default;
             item.species = details.species;
-            item.height = details.height;
+            item.height = details.height/10*3.28084;
             item.types = details.types;
             item.stats = details.base_stat;
         }).catch(function (e) {
@@ -89,7 +89,7 @@ var pokemonRepository = (function () {
         // typeElement.innerText = item.types;
         
         var contentElement = document.createElement('p');
-        contentElement.innerText = item.height + (' decimetres tall');
+        contentElement.innerText = item.height.toFixed(1) + (' feet tall');
         
         modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);
